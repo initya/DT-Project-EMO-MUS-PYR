@@ -38,8 +38,13 @@ user_name = spotifyObject.current_user()
 # To print the response in readable format.
 print(json.dumps(user_name, sort_keys=True, indent=4))
 While True :
+    search_song = " "
     search_song = imgcap_fun(facecap())
-    search_song = search_song["dominant_emotion"] + "songs"
+    if search_song == "Face not Detected" :
+        search_song = "Way Down We Go"
+        print("Face Not Detected thus playing NOW DEFAULT : Way Down We Go by Kaleo")
+    else :
+        search_song = search_song["dominant_emotion"] + "songs"
     print("Searching for",search_song)
     #search_song = input("Enter the query string : ")
     results = spotifyObject.search(search_song, 1, 0, "track")
